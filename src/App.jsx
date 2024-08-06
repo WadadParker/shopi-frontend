@@ -3,7 +3,7 @@ import Home from './pages/Home.jsx'
 
 function App() {
   return (
-    <div className='h-screen'>
+    <div className='h-screen w-screen'>
       <Routes>
         <Route path='/' element={<Home />} />
       </Routes>
