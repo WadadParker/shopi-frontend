@@ -1,5 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 
+const apiKey = import.meta.env.VITE_API_KEY;
+const sellerBTCAddress = import.meta.env.VITE_SELLER_BTC_ADDRESS;
+
 const Payment = ({ setShowModal }) => {
   const iframeRef = useRef(null);
   const [loading, setLoading] = useState(true);
@@ -28,13 +31,20 @@ const Payment = ({ setShowModal }) => {
   const initializePayment = () => {
     const iframe = iframeRef.current;
     if (iframe) {
-      iframe.contentWindow.postMessage({ type: 'INITIATE_PAYMENT', amount: 1000 });
+      iframe.contentWindow.postMessage({
+        type: 'INITIATE_PAYMENT',
+        amount: 2.750,
+        apiKey,
+        sellerBTCAddress
+    }
+    );
     }
     setShowModal(false);
   };
 
   const handleIframeLoad = () => {
     setLoading(false);
+    initializePayment();
   };
 
   return (
