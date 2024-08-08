@@ -29,7 +29,7 @@ const Checkout = () => {
   const initializePayment = () => {
     const iframe = iframeRef.current;
     if (iframe) {
-      iframe.contentWindow.postMessage({ type: 'INITIATE_PAYMENT', amount: 1000, rate: '10%' }, 'https://depay-gateway.netlify.app');
+      iframe.contentWindow.postMessage({ type: 'INITIATE_PAYMENT', amount: 1000 });
     }
   };
   return (
@@ -39,10 +39,9 @@ const Checkout = () => {
     <iframe
       ref={iframeRef}
       src="https://depay-gateway.netlify.app"
-      width="1920"
-      height="1080"
+      width={1600}
+      height={400}
       title="Payment Gateway"
-      sandbox="allow-scripts  allow-forms"
     ></iframe>
   </div>
   )

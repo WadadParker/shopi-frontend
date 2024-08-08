@@ -1,8 +1,12 @@
 import React, { useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+
 import imageOne from "../assets/pendant.jpg"
 import imageTwo from "../assets/surfboard.jpg"
 import imageThree from "../assets/tshirt.jpg";
-import { useNavigate } from 'react-router-dom';
+
+import Payment from '../components/payment/payment';
+
 
 const Heading = ({number}) => {
   switch(number) {
@@ -24,6 +28,7 @@ const Heading = ({number}) => {
 }
 
 const Home = () => {
+  const [showModal,setShowModal] = useState(false);
   const [heading,setHeading] = useState(1);
   const [cart,setCart] = useState({pendant:0,surfboard:0,tshirt:0});
   const timeoutRef = useRef(null);
@@ -51,13 +56,15 @@ const Home = () => {
   }
 
   return (
+    <>
+    {showModal && <Payment setShowModal={setShowModal} />}
     <div className=' w-full h-full flex flex-col bg-bg-dark'>
       <div className='flex flex-col grow mx-[9%] mb-[3%] mt-20'>
         <h1 className='text-center text-2xl font-light tracking-[-0.96px] opacity-60 text-black mb-4'>Click the product image to add to cart</h1>
         <main className='grow flex flex-col justify-center bg-bg border-border rounded-[10px]'>
           <section className='text-center'>
             <button className={`p-2.5 border border-text-light rounded-sm text-text-light text-3xl font-light tracking-[-1.28px] mb-10 ${cart.pendant>0 || cart.surfboard>0 || cart.tshirt>0 ? "visible" : "invisible"}  `}
-             onClick={()=>navigate("/checkout")}>Checkout</button>
+             onClick={()=>{setShowModal(true)}}>Checkout</button>
             <Heading number={heading} />
             <ul className='space-x-10 flex justify-center'>
               <li >
@@ -86,6 +93,7 @@ const Home = () => {
         </main>
       </div>
     </div>
+    </>
   )
 }
 

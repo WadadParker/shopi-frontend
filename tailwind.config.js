@@ -12,7 +12,7 @@ export default {
           dark: '#BBBBBB'
         },
         text:{
-          DEFAULT:"2F2F2F",
+          DEFAULT:"#2F2F2F",
           light:"#ACACAC"
         },
         border:{
