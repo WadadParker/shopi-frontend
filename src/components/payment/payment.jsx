@@ -44,7 +44,6 @@ const Payment = ({ setShowModal }) => {
 
   const handleIframeLoad = () => {
     setLoading(false);
-    initializePayment();
   };
 
   return (
@@ -59,8 +58,8 @@ const Payment = ({ setShowModal }) => {
           className={`border rounded-3xl ${loading ? 'hidden' : 'block'}`}
           ref={iframeRef}
           src="https://depay-gateway.netlify.app"
-          width={400}
-          height={400}
+          width={600}
+          height={600}
           title="Payment Gateway"
           onLoad={handleIframeLoad}
         ></iframe>
