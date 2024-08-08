@@ -7,7 +7,7 @@ function App() {
     <div className='h-screen w-screen'>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/checout' element={<Checkout />} />
+        <Route path='/checkout' element={<Checkout />} />
       </Routes>
     </div>
   )

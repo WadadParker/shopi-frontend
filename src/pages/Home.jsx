@@ -56,7 +56,8 @@ const Home = () => {
         <h1 className='text-center text-2xl font-light tracking-[-0.96px] opacity-60 text-black mb-4'>Click the product image to add to cart</h1>
         <main className='grow flex flex-col justify-center bg-bg border-border rounded-[10px]'>
           <section className='text-center'>
-            <button className={`p-2.5 border border-text-light rounded-sm text-text-light text-3xl font-light tracking-[-1.28px] mb-10 ${cart.pendant>0 || cart.surfboard>0 || cart.tshirt>0 ? "visible" : "invisible"}  `} onClick={()=>navigate("/checkout")}>Checkout</button>
+            <button className={`p-2.5 border border-text-light rounded-sm text-text-light text-3xl font-light tracking-[-1.28px] mb-10 ${cart.pendant>0 || cart.surfboard>0 || cart.tshirt>0 ? "visible" : "invisible"}  `}
+             onClick={()=>navigate("/checkout")}>Checkout</button>
             <Heading number={heading} />
             <ul className='space-x-10 flex justify-center'>
               <li >
