@@ -30,6 +30,7 @@ const Payment = ({ setShowModal }) => {
     if (iframe) {
       iframe.contentWindow.postMessage({ type: 'INITIATE_PAYMENT', amount: 1000 });
     }
+    setShowModal(false);
   };
 
   const handleIframeLoad = () => {
@@ -37,11 +38,10 @@ const Payment = ({ setShowModal }) => {
   };
 
   return (
-    <div className="fixed bg-black/25 h-screen w-screen flex justify-center items-center z-30">
-      <main className="z-20 bg-transparent">
-        <button onClick={initializePayment} className="">Pay Now</button>
+    <div className="fixed bg-black/10 backdrop-blur-lg h-screen w-screen flex justify-center items-center z-30">
+      <main className="z-20 bg-transparent flex flex-col">
         {loading && (
-          <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center">
             <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
           </div>
         )}
@@ -54,6 +54,7 @@ const Payment = ({ setShowModal }) => {
           title="Payment Gateway"
           onLoad={handleIframeLoad}
         ></iframe>
+        {!loading && <button onClick={initializePayment} className=" mt-4 px-1.5 py-1 text-lg border-2 border-[#6A6A6A] text-[#6A6A6A] rounded-full hover:text-white hover:bg-[#6A6A6A] transition-all ease-linear">close</button>}
       </main>
     </div>
   );

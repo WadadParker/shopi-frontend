@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import imageOne from "../assets/pendant.jpg"
@@ -6,6 +6,7 @@ import imageTwo from "../assets/surfboard.jpg"
 import imageThree from "../assets/tshirt.jpg";
 
 import Payment from '../components/payment/payment';
+import waves from "../assets/waveslogo.png"
 
 
 const Heading = ({number}) => {
@@ -31,6 +32,8 @@ const Home = () => {
   const [showModal,setShowModal] = useState(false);
   const [heading,setHeading] = useState(1);
   const [cart,setCart] = useState({pendant:0,surfboard:0,tshirt:0});
+  const [showAnimation,setShowAnimation] = useState(false);
+
   const timeoutRef = useRef(null);
   const navigate = useNavigate();
 
@@ -55,12 +58,32 @@ const Home = () => {
     : setCart(prev=>({...prev,[product]:prev[product] + 1}))
   }
 
+  useEffect(()=>{
+
+    const animation = 
+      setInterval(()=>{
+        setShowAnimation(prev=>!prev)
+      },4000)
+
+    return () => {
+      clearInterval(animation)
+    }
+
+  },[])
+
   return (
     <>
     {showModal && <Payment setShowModal={setShowModal} />}
     <div className=' w-full h-full flex flex-col bg-bg-dark'>
-      <div className='flex flex-col grow mx-[9%] mb-[3%] mt-20'>
-        <h1 className='text-center text-2xl font-light tracking-[-0.96px] opacity-60 text-black mb-4'>Click the product image to add to cart</h1>
+      <div className='flex flex-col grow mx-[20%] mb-[6%] mt-20'>
+        <header className='text-center text-2xl font-light tracking-[-0.96px] opacity-60 text-black mb-4 transition-all ease-linear'>
+          {false
+          ?<>
+            <img src='waves' /> <p className=' text-2xl font-bold'>waves<span className='font-light'>giving</span></p>
+          </>
+          :"Click the product image to add to cart"
+          }
+        </header>
         <main className='grow flex flex-col justify-center bg-bg border-border rounded-[10px]'>
           <section className='text-center'>
             <button className={`p-2.5 border border-text-light rounded-sm text-text-light text-3xl font-light tracking-[-1.28px] mb-10 ${cart.pendant>0 || cart.surfboard>0 || cart.tshirt>0 ? "visible" : "invisible"}  `}
