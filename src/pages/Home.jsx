@@ -74,7 +74,7 @@ const Home = () => {
   return (
     <>
     {showModal && <Payment setShowModal={setShowModal} />}
-    <div className=' w-full h-full flex flex-col bg-bg-dark'>
+    <div className=' w-full h-full flex flex-col bg-[#F9F9F9]'>
       <div className='flex flex-col grow mx-[20%] mb-[6%] mt-20'>
         <header className='text-center text-2xl font-light tracking-[-0.96px] opacity-60 text-black mb-4 transition-all ease-linear'>
           {false
