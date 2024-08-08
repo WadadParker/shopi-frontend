@@ -7,16 +7,10 @@ const Payment = ({ setShowModal }) => {
   const iframeRef = useRef(null);
   const [loading, setLoading] = useState(true);
 
-  const getBlobURL = (code, type) => {
-    const blob = new Blob([code], { type });
-    return URL.createObjectURL(blob);
-  }
-
   useEffect(() => {
     const handlePaymentSuccess = (event) => {
       if (event.data.type === 'PAYMENT_SUCCESS') {
         console.log('Payment successful:', event.data);
-        setShowModal(false);
         // Handle payment success (e.g., update state, show a success message)
       }
     };
